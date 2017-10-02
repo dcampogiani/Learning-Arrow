@@ -1,3 +1,6 @@
+import datatypes.OptionDemo
+
 fun main(args: Array<String>) {
-    println("Hello Kategory")
+
+    OptionDemo()
 }
