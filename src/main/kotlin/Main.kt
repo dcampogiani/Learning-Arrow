@@ -1,17 +1,21 @@
-import datatypes.OptionDemo
-import datatypes.TryDemo
-import kategory.Either
+import kategory.Option
 import kategory.Try
+import kategory.ev
+import kategory.some
+import typeclasses.FunctorDemo
 
 fun main(args: Array<String>) {
 
 
-    val success = TryDemo.parseInt("42").map { TryDemo.multuplyBy2(it) }
-    val failure = TryDemo.parseInt("pippo").map { TryDemo.multuplyBy2(it) }
+    val some10 = 10.some()
+    val success10 = 10.success()
 
-    Try
+    val optionFun: Option<Int> = FunctorDemo.multiplyBy2(some10).ev()
+    val tryFun: Try<Int> = FunctorDemo.multiplyBy2(success10).ev()
 
-    print(success)
-    print(failure)
+    println("Option : $optionFun")
+    println("Try : $tryFun")
 
 }
+
+private fun <T> T.success() = Try.Success(this)
