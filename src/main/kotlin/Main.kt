@@ -4,6 +4,7 @@ fun main(args: Array<String>) {
 
     ValidationDemo.option()
     ValidationDemo.either()
-    ValidationDemo.validated()
+    ValidationDemo.validatedString()
+    ValidationDemo.validatedListString()
 }
 

@@ -2,6 +2,7 @@ package validation
 
 import validation.either.EitherValidation
 import validation.option.OptionValidation
+import validation.validated.ValidatedListStringValidation
 import validation.validated.ValidatedStringValidation
 
 object ValidationDemo {
@@ -58,10 +59,10 @@ object ValidationDemo {
 
     }
 
-    fun validated() {
+    fun validatedString() {
 
         println()
-        println("Validated")
+        println("Validated String")
         println()
 
 
@@ -76,9 +77,31 @@ object ValidationDemo {
         println(validatedFourth)
 
         println()
-        println("End Validated")
+        println("End Validated String")
         println()
 
+    }
+
+    fun validatedListString() {
+
+        println()
+        println("Validated List String")
+        println()
+
+
+        val validatedFirst = ValidatedListStringValidation.validateData(first)
+        val validatedSecond = ValidatedListStringValidation.validateData(second)
+        val validatedThird = ValidatedListStringValidation.validateData(third)
+        val validatedFourth = ValidatedListStringValidation.validateData(fourth)
+
+        println(validatedFirst)
+        println(validatedSecond)
+        println(validatedThird)
+        println(validatedFourth)
+
+        println()
+        println("End Validated List String")
+        println()
 
     }
 
