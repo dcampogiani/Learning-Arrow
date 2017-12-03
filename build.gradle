@@ -2,7 +2,7 @@ group 'campogianid'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.51'
+    ext.kotlin_version = '1.2.0'
 
     repositories {
         mavenCentral()
@@ -27,6 +27,7 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     compile 'io.kategory:kategory:0.3.11'
+    testCompile 'junit:junit:4.12'
 
 }
 
