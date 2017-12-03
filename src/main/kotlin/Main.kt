@@ -6,5 +6,6 @@ fun main(args: Array<String>) {
     ValidationDemo.either()
     ValidationDemo.validatedString()
     ValidationDemo.validatedListString()
+    ValidationDemo.validatedNelString()
 }
 

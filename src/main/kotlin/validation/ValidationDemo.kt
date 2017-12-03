@@ -3,6 +3,7 @@ package validation
 import validation.either.EitherValidation
 import validation.option.OptionValidation
 import validation.validated.ValidatedListStringValidation
+import validation.validated.ValidatedNelStringValidation
 import validation.validated.ValidatedStringValidation
 
 object ValidationDemo {
@@ -101,6 +102,29 @@ object ValidationDemo {
 
         println()
         println("End Validated List String")
+        println()
+
+    }
+
+    fun validatedNelString() {
+
+        println()
+        println("Validated Nel String")
+        println()
+
+
+        val validatedFirst = ValidatedNelStringValidation.validateData(first)
+        val validatedSecond = ValidatedNelStringValidation.validateData(second)
+        val validatedThird = ValidatedNelStringValidation.validateData(third)
+        val validatedFourth = ValidatedNelStringValidation.validateData(fourth)
+
+        println(validatedFirst)
+        println(validatedSecond)
+        println(validatedThird)
+        println(validatedFourth)
+
+        println()
+        println("End Validated Nel String")
         println()
 
     }
