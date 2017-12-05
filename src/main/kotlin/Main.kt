@@ -1,7 +1,11 @@
-import typeclasses.ApplicativeDemo
+import validation.ValidationDemo
 
 fun main(args: Array<String>) {
 
-    ApplicativeDemo()
+    ValidationDemo.option()
+    ValidationDemo.either()
+    ValidationDemo.validatedString()
+    ValidationDemo.validatedListString()
+    ValidationDemo.validatedNelString()
 }
 
