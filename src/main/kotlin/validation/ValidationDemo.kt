@@ -1,6 +1,6 @@
 package validation
 
-import kategory.*
+import kategory.ValidatedHK
 import validation.applicativeerror.ApplicativeErrorValidation
 import validation.either.EitherValidation
 import validation.option.OptionValidation
@@ -134,7 +134,7 @@ object ValidationDemo {
     fun applicativeError() {
 
         println()
-        println("Applicative Error Nel String")
+        println("Applicative Error Nel Sealed Class")
         println()
 
 
@@ -143,17 +143,13 @@ object ValidationDemo {
         val validatedThird = ApplicativeErrorValidation.validateData<ValidatedHK>(third)
         val validatedFourth = ApplicativeErrorValidation.validateData<ValidatedHK>(fourth)
 
-
-        val AE: ApplicativeError<OptionHK, Unit> = Option.monadError()
-        //val optionFirst = ApplicativeErrorValidation.validateData<OptionHK>(first, AE)
-
         println(validatedFirst)
         println(validatedSecond)
         println(validatedThird)
         println(validatedFourth)
 
         println()
-        println("End Applicative Error Nel String")
+        println("End Applicative Error Nel Sealed Class")
         println()
 
     }
