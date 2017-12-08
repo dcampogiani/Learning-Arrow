@@ -12,7 +12,7 @@ object ValidatedStringValidation {
         val mail = input.mail
         val phone = input.phone
 
-        return Validated.applicative<String>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
+        return Validated.applicativeError<String>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
 

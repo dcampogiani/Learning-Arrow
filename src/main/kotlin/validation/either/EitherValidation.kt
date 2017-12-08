@@ -12,15 +12,9 @@ object EitherValidation {
         val mail = input.mail
         val phone = input.phone
 
-        return Either.monad<String>().binding {
-            val validMail = mail.eitherMail().bind()
-            val validPhoneNumber = phone.eitherPhoneNumber().bind()
-            yields(Data(validMail, validPhoneNumber))
-        }.ev()
-
-        /*return Either.applicative<String>().map2(mail.eitherMail(), phone.eitherPhoneNumber()) {
+        return Either.monadError<String>().map2(mail.eitherMail(), phone.eitherPhoneNumber()) {
             Data(it.a, it.b)
-        }.ev()*/
+        }.ev()
 
     }
 

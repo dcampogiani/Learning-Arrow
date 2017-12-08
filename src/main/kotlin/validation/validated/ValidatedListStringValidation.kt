@@ -12,7 +12,7 @@ object ValidatedListStringValidation {
         val mail = input.mail
         val phone = input.phone
 
-        return Validated.applicative<ListKW<String>>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
+        return Validated.applicativeError<ListKW<String>>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
 

@@ -12,7 +12,7 @@ object ValidatedNelStringValidation {
         val mail = input.mail
         val phone = input.phone
 
-        return Validated.applicative<Nel<String>>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
+        return Validated.applicativeError<Nel<String>>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
 

@@ -1,8 +1,8 @@
 package validation.option
 
 import kategory.Option
-import kategory.applicative
 import kategory.ev
+import kategory.monadError
 import kategory.some
 import validation.Data
 
@@ -12,7 +12,7 @@ object OptionValidation {
 
         val mail = input.mail
         val phone = input.phone
-        return Option.applicative().map2(mail.optionMail(), phone.optionPhoneNumber()) {
+        return Option.monadError().map2(mail.optionMail(), phone.optionPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
 

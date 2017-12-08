@@ -7,5 +7,6 @@ fun main(args: Array<String>) {
     ValidationDemo.validatedString()
     ValidationDemo.validatedListString()
     ValidationDemo.validatedNelString()
+    ValidationDemo.applicativeError()
 }
 
