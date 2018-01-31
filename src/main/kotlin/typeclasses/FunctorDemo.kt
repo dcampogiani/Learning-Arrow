@@ -1,6 +1,13 @@
 package typeclasses
 
-import kategory.*
+import arrow.HK
+import arrow.core.Option
+import arrow.core.ev
+import arrow.data.Try
+import arrow.data.ev
+import arrow.syntax.option.some
+import arrow.typeclasses.Functor
+import arrow.typeclasses.functor
 import success
 
 object FunctorDemo {
@@ -15,13 +22,11 @@ object FunctorDemo {
 
         println("Option : $optionFun")
         println("Try : $tryFun")
-
     }
 
     inline fun <reified F> multiplyBy2(
-            fa: HK<F, Int>,
-            FT: Functor<F> = functor()): HK<F, Int> {
+        fa: HK<F, Int>,
+        FT: Functor<F> = functor()): HK<F, Int> {
         return FT.map(fa, { it * 2 })
     }
-
 }

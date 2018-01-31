@@ -1,9 +1,11 @@
 package validation.option
 
-import kategory.Option
-import kategory.applicative
-import kategory.ev
-import kategory.some
+import arrow.core.None
+import arrow.core.Option
+import arrow.core.applicative
+import arrow.core.ev
+import arrow.syntax.option.some
+
 import validation.Data
 
 object OptionValidation {
@@ -15,19 +17,17 @@ object OptionValidation {
         return Option.applicative().map2(mail.optionMail(), phone.optionPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
-
     }
 
-
     private fun String.optionMail(): Option<String> =
-            when {
-                validation.validMail(this) -> this.some()
-                else -> Option.None
-            }
+        when {
+            validation.validMail(this) -> this.some()
+            else -> None
+        }
 
     private fun String.optionPhoneNumber(): Option<String> =
-            when {
-                validation.validNumber(this) -> this.some()
-                else -> Option.None
-            }
+        when {
+            validation.validNumber(this) -> this.some()
+            else -> None
+        }
 }

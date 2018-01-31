@@ -1,6 +1,22 @@
 package typeclasses
 
-import kategory.*
+import arrow.HK
+import arrow.core.Eval
+import arrow.core.None
+import arrow.core.Option
+import arrow.core.OptionHK
+import arrow.core.Tuple2
+import arrow.core.applicative
+import arrow.core.ev
+import arrow.data.Try
+import arrow.data.TryHK
+import arrow.data.applicative
+import arrow.data.ev
+import arrow.syntax.applicative.map
+import arrow.syntax.applicative.pure
+import arrow.syntax.option.some
+import arrow.typeclasses.Applicative
+import arrow.typeclasses.applicative
 import success
 
 object ApplicativeDemo {
@@ -31,7 +47,7 @@ object ApplicativeDemo {
         val tryFunction = Try.Success({ n: Int -> n + 1 })
         val tryApOK = 1.success().ap(tryFunction)
 
-        val none: Option<(Int) -> Int> = Option.None
+        val none: Option<(Int) -> Int> = None
         val optionApKO = 1.some().ap(none)
 
         val failure = Try.Failure<Int>(RuntimeException())
@@ -51,12 +67,10 @@ object ApplicativeDemo {
         val concatString = { z: Tuple2<Int, String> -> "${z.a}${z.b}" }
 
         val resultBothValid = Option.applicative().map2(option1, optionX, concatString).ev()
-        val resultOneIsNone = Option.applicative().map2(Option.None, optionX, concatString).ev()
+        val resultOneIsNone = Option.applicative().map2(None, optionX, concatString).ev()
 
         println(resultBothValid)
         println(resultOneIsNone)
-
-
     }
 
     private fun demoMap2Eval() {
@@ -68,7 +82,6 @@ object ApplicativeDemo {
         val resultBothValid = Option.applicative().map2Eval(option1, Eval.later { optionX }, concatString).ev()
 
         println(resultBothValid.value())
-
     }
 
     private fun demoApplicativeBuilderOption() {
@@ -77,8 +90,7 @@ object ApplicativeDemo {
         fun phoneService(): Option<Int> = Option(339457812)
         fun addressService(): Option<List<String>> = Option(listOf("Via Con la Neve", "40126", "BO"))
 
-        fun phoneServiceInvalid(): Option<Int> = Option.None
-
+        fun phoneServiceInvalid(): Option<Int> = None
 
         val profileValid = Option.applicative().map(profileService(), phoneService(), addressService()) { (name, phone, address) ->
             Profile(name, phone, address)
@@ -90,7 +102,6 @@ object ApplicativeDemo {
 
         println(profileValid)
         println(profileInValid)
-
     }
 
     private fun demoApplicativeBuilderTry() {
@@ -100,7 +111,6 @@ object ApplicativeDemo {
         fun addressService(): Try<List<String>> = listOf("Via Con la Neve", "40126", "BO").success()
 
         fun phoneServiceInvalid(): Try<Int> = Try.Failure(RuntimeException())
-
 
         val profileValid = Try.applicative().map(profileService(), phoneService(), addressService()) { (name, phone, address) ->
             Profile(name, phone, address)
@@ -112,7 +122,6 @@ object ApplicativeDemo {
 
         println(profileValid)
         println(profileInValid)
-
     }
 
     private fun demoApplicativeBuilderGeneric() {
@@ -122,7 +131,6 @@ object ApplicativeDemo {
         fun addressServiceTry(): Try<List<String>> = listOf("Via Con la Neve", "40126", "BO").success()
 
         fun phoneServiceInvalidTry(): Try<Int> = Try.Failure(RuntimeException())
-
 
         val profileValidTry = createProfile(profileServiceTry(), phoneServiceTry(), addressServiceTry()).ev()
         val profileInValidTry = createProfile(profileServiceTry(), phoneServiceInvalidTry(), addressServiceTry()).ev()
@@ -135,15 +143,13 @@ object ApplicativeDemo {
         fun phoneServiceOption(): Option<Int> = 339457812.some()
         fun addressServiceOption(): Option<List<String>> = listOf("Via Con la Neve", "40126", "BO").some()
 
-        fun phoneServiceInvalidOption(): Option<Int> = Option.None
-
+        fun phoneServiceInvalidOption(): Option<Int> = None
 
         val profileValidOption = createProfile(profileServiceOption(), phoneServiceOption(), addressServiceOption()).ev()
         val profileInValidOption = createProfile(profileServiceOption(), phoneServiceInvalidOption(), addressServiceOption()).ev()
 
         println(profileValidOption)
         println(profileInValidOption)
-
     }
 
     private inline fun <reified F> createProfile(profile: HK<F, String>, phone: HK<F, Int>, address: HK<F, List<String>>, FT: Applicative<F> = applicative()): HK<F, Profile> {
@@ -151,5 +157,4 @@ object ApplicativeDemo {
     }
 
     data class Profile(val name: String, val phone: Int, val address: List<String>)
-
 }
