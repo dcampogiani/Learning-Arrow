@@ -2,6 +2,7 @@ package validation.validated
 
 import arrow.data.Validated
 import arrow.data.applicative
+import arrow.data.applicativeError
 import arrow.data.ev
 import arrow.syntax.validated.invalid
 import arrow.syntax.validated.valid
@@ -16,7 +17,7 @@ object ValidatedStringValidation {
         val mail = input.mail
         val phone = input.phone
 
-        return Validated.applicative<String>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
+        return Validated.applicativeError<String>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
     }

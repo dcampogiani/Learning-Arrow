@@ -1,9 +1,6 @@
 package validation.option
 
-import arrow.core.None
-import arrow.core.Option
-import arrow.core.applicative
-import arrow.core.ev
+import arrow.core.*
 import arrow.syntax.option.some
 
 import validation.Data
@@ -14,7 +11,7 @@ object OptionValidation {
 
         val mail = input.mail
         val phone = input.phone
-        return Option.applicative().map2(mail.optionMail(), phone.optionPhoneNumber()) {
+        return Option.monadError().map2(mail.optionMail(), phone.optionPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
     }

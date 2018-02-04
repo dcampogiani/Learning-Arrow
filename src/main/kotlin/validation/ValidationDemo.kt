@@ -1,5 +1,7 @@
 package validation
 
+import arrow.data.ValidatedHK
+import validation.applicativeerror.ApplicativeErrorValidation
 import validation.either.EitherValidation
 import validation.option.OptionValidation
 import validation.validated.ValidatedListStringValidation
@@ -125,6 +127,29 @@ object ValidationDemo {
 
         println()
         println("End Validated Nel String")
+        println()
+
+    }
+
+    fun applicativeError() {
+
+        println()
+        println("Applicative Error Nel Sealed Class")
+        println()
+
+
+        val validatedFirst = ApplicativeErrorValidation.validateData<ValidatedHK>(first)
+        val validatedSecond = ApplicativeErrorValidation.validateData<ValidatedHK>(second)
+        val validatedThird = ApplicativeErrorValidation.validateData<ValidatedHK>(third)
+        val validatedFourth = ApplicativeErrorValidation.validateData<ValidatedHK>(fourth)
+
+        println(validatedFirst)
+        println(validatedSecond)
+        println(validatedThird)
+        println(validatedFourth)
+
+        println()
+        println("End Applicative Error Nel Sealed Class")
         println()
 
     }

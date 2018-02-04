@@ -1,10 +1,6 @@
 package validation.validated
 
-import arrow.data.ListKW
-import arrow.data.Validated
-import arrow.data.applicative
-import arrow.data.ev
-import arrow.data.k
+import arrow.data.*
 import arrow.syntax.validated.invalid
 import arrow.syntax.validated.valid
 import validation.Data
@@ -18,7 +14,7 @@ object ValidatedListStringValidation {
         val mail = input.mail
         val phone = input.phone
 
-        return Validated.applicative<ListKW<String>>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
+        return Validated.applicativeError<ListKW<String>>().map2(mail.validatedMail(), phone.validatedPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
     }
