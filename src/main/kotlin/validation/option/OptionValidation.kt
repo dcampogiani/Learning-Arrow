@@ -1,9 +1,8 @@
 package validation.option
 
-import kategory.Option
-import kategory.ev
-import kategory.monadError
-import kategory.some
+import arrow.core.*
+import arrow.syntax.option.some
+
 import validation.Data
 
 object OptionValidation {
@@ -15,19 +14,17 @@ object OptionValidation {
         return Option.monadError().map2(mail.optionMail(), phone.optionPhoneNumber()) {
             Data(it.a, it.b)
         }.ev()
-
     }
 
-
     private fun String.optionMail(): Option<String> =
-            when {
-                validation.validMail(this) -> this.some()
-                else -> Option.None
-            }
+        when {
+            validation.validMail(this) -> this.some()
+            else -> None
+        }
 
     private fun String.optionPhoneNumber(): Option<String> =
-            when {
-                validation.validNumber(this) -> this.some()
-                else -> Option.None
-            }
+        when {
+            validation.validNumber(this) -> this.some()
+            else -> None
+        }
 }

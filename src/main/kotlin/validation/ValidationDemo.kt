@@ -1,6 +1,6 @@
 package validation
 
-import kategory.ValidatedHK
+import arrow.data.ValidatedHK
 import validation.applicativeerror.ApplicativeErrorValidation
 import validation.either.EitherValidation
 import validation.option.OptionValidation

@@ -1,6 +1,10 @@
 package validation.applicativeerror
 
-import kategory.*
+import arrow.HK
+import arrow.data.Nel
+import arrow.data.nel
+import arrow.typeclasses.ApplicativeError
+import arrow.typeclasses.applicativeError
 import validation.Data
 import validation.validMail
 import validation.validNumber
