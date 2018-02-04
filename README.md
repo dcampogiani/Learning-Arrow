@@ -1,10 +1,10 @@
-# Kategory-Demo
-Play with [Kategoty (Kotlin)](https://github.com/kategory/kategory)
+# Learning-Arrow
+Play with [Arrow (Kotlin)](http://arrow-kt.io/)
 
 # How to run
- - git clone https://github.com/dcampogiani/Kategory-Demo.git
- - cd Kategory-Demo
+ - git clone https://github.com/dcampogiani/Learning-Arrow.git
+ - cd Learning-Arrow
  - ./gradlew run
 
 # Goal
-Understand and try https://github.com/kategory/kategory/tree/master/kategory-docs/docs/docs
+Understand and try http://arrow-kt.io/docs/
