@@ -1,12 +1,10 @@
-import validation.ValidationDemo
+import typeclasses.monad.MonadDemo
 
 fun main(args: Array<String>) {
 
-    ValidationDemo.option()
-    ValidationDemo.either()
-    ValidationDemo.validatedString()
-    ValidationDemo.validatedListString()
-    ValidationDemo.validatedNelString()
-    ValidationDemo.applicativeError()
+    MonadDemo.flatMapsOption()
+    MonadDemo.forComprehensionOptions()
+    MonadDemo.forComprehensionEither()
+    MonadDemo.polymorphic()
 }
 
